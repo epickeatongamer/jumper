@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Runner Game with Lives</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div class="scoreboard">
+    <div id="score">SCORE: 00000</div>
+    <div id="highScore">HIGHSCORE: 00000</div>
+    <div id="lives" class="lives"></div>
+  </div>
+
+  <button id="startButton">Start</button>
+  <button id="restartButton">Restart</button>
+
+  <div id="infoPanel" class="info-panel">
+    <p><strong>Controls:</strong> Press <code>Space</code> to jump. You can double-jump once in mid-air.</p>
+    <p><strong>Lives:</strong> You start with 1 life. Hitting an obstacle costs 1 life. Collect ❤️ to gain 0.5 (max 3).</p>
+  </div>
+</body>
+</html>
