@@ -2,26 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Runner Game with Lives</title>
+  <title>2D Pixel Runner</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+  <style>
+    /* Inline fallback to ensure popup container shows properly */
+    #achievementPopup {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 20;
+    }
+  </style>
 </head>
 <body>
-  <canvas id="game"></canvas>
-
+  <!-- Scoreboard -->
   <div class="scoreboard">
     <div id="score">SCORE: 00000</div>
     <div id="highScore">HIGHSCORE: 00000</div>
-    <div id="lives" class="lives"></div>
+    <div id="lives" class="hearts"></div>
   </div>
 
-  <button id="startButton">Start</button>
-  <button id="restartButton">Restart</button>
+  <!-- Streak bar -->
+  <div class="streak-container">
+    <div id="streakBar" class="streak-bar"></div>
+  </div>
 
+  <!-- UI Buttons -->
+  <div class="ui-buttons">
+    <button id="startButton">Start</button>
+    <button id="restartButton" style="display:none;">Restart</button>
+    <button id="achievementsButton">⭐</button>
+  </div>
+
+  <!-- Achievements Panel -->
+  <div id="achievementsPanel" class="achievements hidden">
+    <h3>Achievements</h3>
+    <div>
+      <strong id="distanceLabel">1: Distance</strong>
+      <div class="ach-bar">
+        <div id="distanceBar"></div>
+      </div>
+      <span id="distanceText">0 / 250</span>
+    </div>
+    <div>
+      <strong id="obstacleLabel">1: Obstacles</strong>
+      <div class="ach-bar">
+        <div id="obstacleBar"></div>
+      </div>
+      <span id="obstacleText">0 / 50</span>
+    </div>
+  </div>
+
+  <!-- Popup for milestone -->
+  <div id="achievementPopup"></div>
+
+  <!-- Pause Overlay -->
+  <div id="pauseOverlay" class="pause-overlay">
+    <div class="pause-box">
+      <h2>Paused</h2>
+      <p>Press ESC to resume</p>
+    </div>
+  </div>
+
+  <!-- Info Panel -->
   <div id="infoPanel" class="info-panel">
-    <p><strong>Controls:</strong> Press <code>Space</code> to jump. You can double-jump once in mid-air.</p>
+    <p><strong>Controls:</strong> Press <kbd>Space</kbd> to jump. Double-jump once in mid-air.</p>
     <p><strong>Lives:</strong> You start with 1 life. Hitting an obstacle costs 1 life. Collect ❤️ to gain 0.5 (max 3).</p>
+    <p><strong>Streak:</strong> Clear obstacles in a row — over 50 streak you earn 1.5× score until you miss.</p>
   </div>
+
+  <!-- Canvas -->
+  <canvas id="game"></canvas>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
